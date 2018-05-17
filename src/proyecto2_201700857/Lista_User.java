@@ -4,7 +4,7 @@ package proyecto2_201700857;
 public class Lista_User {
     
     class NodoU{
-        int CUI;
+        String CUI;
         String Nombre;
         String Correo;
         String Usuario;
@@ -14,11 +14,11 @@ public class Lista_User {
         public NodoU(){
         }
         
-        public NodoU(int c, String N, String C, String U, String P){
+        public NodoU(String c, String N, String C, String U, String P){
             CUI= c;
             Nombre = N;
-            C = Correo;
-            U = Usuario;
+            Correo = C;
+            Usuario=U;
             Contraseña = P;
             anterior = null;
             siguiente = null;
@@ -36,20 +36,24 @@ public class Lista_User {
     public Lista_User(){
         inicio = null;
         tamaño = 0;
+        Aux=null;
+        AuxB=null;
     }
     
-    public void Push(int c, String n, String C, String U, String P){
+    public void Push(String c, String n, String C, String U, String P){
       NodoU nuevo = new NodoU(c,n,C,U,P);
       if (inicio == null){
           fondo = nuevo;
           inicio = nuevo;
           fin = inicio;
           Aux = inicio;
+          AuxB=inicio;
       }else{
           nuevo.siguiente = inicio;
           inicio.anterior=nuevo;
-          Aux = inicio;
           inicio = nuevo;
+          Aux = inicio;
+          AuxB=inicio;
       }
       tamaño++;
     }
@@ -68,23 +72,29 @@ public class Lista_User {
             return("EL USUARIO"+nombre+" HA SIDO ELIMINADO");
         }
     }
-    
+    int i =0;
     public String ImprimirNombre(){
         if (Aux!=null){
             String B = Aux.Nombre;
-            Aux = Aux.siguiente;
+//            Aux = Aux.siguiente;
             return(B);
         }else{
             return("");
         }
     }
     
-    public int ImprimirCui(){
+    public void Siguiente(){
+        if (Aux!=null){
+            Aux = Aux.siguiente;
+        }
+    }
+    
+    public String ImprimirCui(){
         if(Aux!=null){
-            int A = Aux.CUI;
+            String A = Aux.CUI;
             return(A);
         }else{
-            return(0);
+            return("");
         }
     }
     
@@ -116,7 +126,7 @@ public class Lista_User {
     }
     
     public void Buscar (String usuario){
-      while (AuxB!=null||usuario.contains(AuxB.Usuario)){
+      while (AuxB!=null||!usuario.contains(AuxB.Usuario)){
                 AuxB = AuxB.siguiente;
       }  
     }
@@ -153,11 +163,11 @@ public class Lista_User {
         }
     }
     
-    public int BuscarCui(){
+    public String BuscarCui(){
         if(AuxB!=null){
             return(AuxB.CUI);
         }else{
-            return(0000);
+            return("");
         }
     }
     
@@ -167,5 +177,20 @@ public class Lista_User {
     
     public void ActualizarB(){
         AuxB=inicio;
+    }
+    
+    public Boolean Existencia(String usuario, String cui,String correo){
+        while (AuxB!=null&&(!usuario.contains(AuxB.Usuario)||!cui.contains(AuxB.CUI)||!correo.contains(AuxB.Correo))){
+                System.out.println("No hay coincidencias aun");
+                AuxB = AuxB.siguiente;
+      }
+        if(AuxB!=null&&(usuario.contains(AuxB.Usuario)||cui.contains(AuxB.CUI)||correo.contains(AuxB.Correo))){
+            System.out.println("Se encontro una coincidencia");
+            ActualizarB();
+            return(true);
+        }else{
+            System.out.println("no hubo coincidencia");
+            return(false);
+        }
     }
 }

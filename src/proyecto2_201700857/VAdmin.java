@@ -7,7 +7,7 @@ import javax.swing.*;
 public class VAdmin {
     JFrame Ventana;
     JPanel p1;
-    JButton Estampas, Usuarios, Reporte;
+    JButton Estampas, Usuarios, Reporte,Salir;
     
     public void CrearPanel(){
         
@@ -21,13 +21,16 @@ public class VAdmin {
         Reporte = new JButton("REPORTE");
         Reporte.setBounds(20,120,100,30);
         Reporte.addMouseListener(accion);
-        
+        Salir = new JButton("REGRESAR");
+        Salir.setBounds(70,150,100,30);
+        Salir.addMouseListener(accion);
         //Panel y agregar
         p1 = new JPanel();
         p1.setLayout(null);
         p1.add(Estampas);
         p1.add(Usuarios);
         p1.add(Reporte);
+        p1.add(Salir);
     }
     
     public void CrearVentana(){
@@ -35,7 +38,7 @@ public class VAdmin {
         Ventana.setBounds(200,70,400,400);
         Ventana.add(p1);
         Ventana.setVisible(true);
-        Ventana.setDefaultCloseOperation(Ventana.HIDE_ON_CLOSE);
+//        Ventana.setDefaultCloseOperation(Ventana.HIDE_ON_CLOSE);
         
     }
     
@@ -49,6 +52,13 @@ public class VAdmin {
         public void mouseClicked(MouseEvent e) {
             if(e.getSource()==Usuarios){
                 VAdminU Ventanita = new VAdminU();
+            }
+            if (e.getSource()==Salir){
+                Ventana.setVisible(false);
+                Proyecto2_201700857.Ventana1.Ventana.setVisible(true);
+            }
+            if (e.getSource()==Estampas){
+                
             }
         }
 

@@ -80,7 +80,7 @@ public class CrearUsuario {
     public void CrearVentana(){
         Ventana = new JFrame("CREAR USUARIO");
         Ventana.setBounds(500,100,500,450);
-        Ventana.setVisible(true);
+        Ventana.setVisible(false);
         Ventana.add(P1);
         Ventana.setDefaultCloseOperation(Ventana.HIDE_ON_CLOSE);
     }
@@ -94,10 +94,13 @@ public class CrearUsuario {
         @Override
         public void mouseClicked(MouseEvent e) {
             if (e.getSource()==Crear){
-                if(!Proyecto2_201700857.Usuarios.Existencia(User.getText(), Cui.getText(), Email.getText())){
+                if(!Proyecto2_201700857.Usuarios.ExistenciaUsuario(User.getText())&&!Proyecto2_201700857.Usuarios.ExistenciaCui(Cui.getText())&&!Proyecto2_201700857.Usuarios.ExistenciaCorreo(Email.getText())){
                 Proyecto2_201700857.Usuarios.Push(Cui.getText(), Name.getText(), Email.getText(), User.getText(), Pass.getText());
+                Proyecto2_201700857.Exito.Mensaje("<html><body>EL USUARIO SE HA REGISTRADO CON EXITO</body></html>");
+                Proyecto2_201700857.Exito.Visibilidad();
                 }else{
-                    System.out.println("EL USUARIO, CUI O EMAIL YA HAN SIDO REGISTRADOS");
+                    Proyecto2_201700857.Ad.Mensaje("<html><body>EL USUARIO, CUI O EMAIL YA HAN <br>SIDO REGISTRADOS</body></html>");
+                    Proyecto2_201700857.Ad.Visibilidad();
                 }
             }
             if(e.getSource()==Cancelar){

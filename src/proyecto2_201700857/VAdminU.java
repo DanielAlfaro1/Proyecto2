@@ -11,7 +11,7 @@ public class VAdminU {
     
     public void CrearPanel(){
         //Addons
-        
+        Font font = new Font("Arial Black",Font.BOLD,12);
         //Botones
         Crear = new JButton("CREAR");
         Crear.setBounds(20,20,100,30);
@@ -31,7 +31,7 @@ public class VAdminU {
     }
     
     public void CrearVentana(){
-        Ventana = new JFrame("PANEL DE USUARIOS");
+        Ventana = new JFrame("PANEL DE CONTROL DE USUARIOS");
         Ventana.setBounds(100,100,400,400);
         Ventana.setVisible(true);
         Ventana.add(P1);
@@ -46,7 +46,9 @@ public class VAdminU {
     MouseListener Boton = new MouseListener() {
         @Override
         public void mouseClicked(MouseEvent e) {
-        
+        if (e.getSource()==Crear){
+            Proyecto2_201700857.Ventana2.Ventana.setVisible(true);
+        }
         }
 
         @Override

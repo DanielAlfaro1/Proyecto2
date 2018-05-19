@@ -126,7 +126,7 @@ public class Lista_User {
     }
     
     public void Buscar (String usuario){
-      while (AuxB!=null||!usuario.contains(AuxB.Usuario)){
+      while (AuxB!=null||!usuario.equals(AuxB.Usuario)){
                 AuxB = AuxB.siguiente;
       }  
     }
@@ -179,17 +179,50 @@ public class Lista_User {
         AuxB=inicio;
     }
     
-    public Boolean Existencia(String usuario, String cui,String correo){
-        while (AuxB!=null&&(!usuario.contains(AuxB.Usuario)||!cui.contains(AuxB.CUI)||!correo.contains(AuxB.Correo))){
-                System.out.println("No hay coincidencias aun");
+    public Boolean ExistenciaUsuario(String usuario){
+        while (AuxB!=null&&(!usuario.equals(AuxB.Usuario))){
+                System.out.println("No hay coincidencias aun de nombre");
                 AuxB = AuxB.siguiente;
       }
-        if(AuxB!=null&&(usuario.contains(AuxB.Usuario)||cui.contains(AuxB.CUI)||correo.contains(AuxB.Correo))){
-            System.out.println("Se encontro una coincidencia");
+        if(AuxB!=null&&(usuario.equals(AuxB.Usuario))){
+            System.out.println("Se encontro una coincidencia en nombre");
             ActualizarB();
             return(true);
         }else{
-            System.out.println("no hubo coincidencia");
+            System.out.println("no hubo coincidencia en nombre");
+            ActualizarB();
+            return(false);
+        }
+    }
+    
+    public Boolean ExistenciaCui(String cui){
+        while(AuxB!=null&&!cui.equals(AuxB.CUI)){
+            System.out.println("No hay coincidencia en cui");
+            AuxB = AuxB.siguiente;
+        }
+        if (AuxB!=null&&cui.equals(AuxB.CUI)){
+            System.out.println("Se ecnontro cui iguales");
+            ActualizarB();
+            return(true);
+        }else{
+            ActualizarB();
+            System.out.println("NO HAY CUI IGUALES");
+            return(false);
+        }
+    }
+    
+    public Boolean ExistenciaCorreo(String email){
+        while(AuxB!=null&&!email.equals(AuxB.Correo)){
+            System.out.println("No hay concidencia en correo aun");
+            AuxB = AuxB.siguiente;
+        }
+        if(AuxB!=null&&email.equals(AuxB.Correo)){
+            System.out.println("EL CORREO YA EXISTE");
+            ActualizarB();
+            return(true);
+        }else{
+            ActualizarB();
+            System.out.println("NO HAY CORREO IGUALES");
             return(false);
         }
     }

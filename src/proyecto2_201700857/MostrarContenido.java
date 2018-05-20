@@ -8,8 +8,8 @@ public class MostrarContenido {
     public JFrame Ventana;
     public JPanel P1,P2;
     public JButton EquipoSiguiente, JugadorSiguiente,Cancelar,EquipoAnterior,JugadorAnterior;
-    public JTextField Equipo, Victorias, Jugador, Camisola, Posicion, ToB;
-    public JLabel team, victory, player, shirt, position, tOb;
+    public JTextField Equipo, Victorias, Jugador, Camisola, Posicion, ToB,zeldo;
+    public JLabel team, victory, player, shirt, position, tOb,Link;
     
     public void CrearPanel(){
         P1 = new JPanel();
@@ -59,6 +59,9 @@ public class MostrarContenido {
         ToB = new JTextField();
         ToB.setFont(font);
         ToB.setBounds(350,375,175,30);
+        zeldo = new JTextField();
+        zeldo.setFont(font);
+        zeldo.setBounds(350,415,175,30);
         //LABELS
         team = new JLabel("NOMBRE DEL EQUIPO");
         team.setFont(font);
@@ -88,6 +91,7 @@ public class MostrarContenido {
         P1.add(position);
         P1.add(tOb);
         P1.add(ToB);
+        P1.add(zeldo);
         //Panel 1
 //        P1.add(P2);
         P1.add(Equipo);
@@ -121,11 +125,13 @@ public class MostrarContenido {
             Camisola.setText(Integer.toString(Proyecto2_201700857.test.Aux.Players.ImprimirCamisola()));
             Posicion.setText(Proyecto2_201700857.test.Aux.Players.ImprimirPosicion());
             ToB.setText(Proyecto2_201700857.test.Aux.Players.ImprimirToP());
+            zeldo.setText(Proyecto2_201700857.test.Aux.Players.Aux.zelda);
         }else{
             Jugador.setText("");
             Camisola.setText("");
             Posicion.setText("");
             ToB.setText("");
+            zeldo.setText("");
         }
     }
     
@@ -150,10 +156,12 @@ public class MostrarContenido {
             }
             if(e.getSource()==JugadorSiguiente){
                 Proyecto2_201700857.test.Aux.Players.Siguiente();
+//                Proyecto2_201700857.test.Aux.Players.Aux.Estampas.SiguienteMost();
                 setearTextoJugador();
             }
             if(e.getSource()==JugadorAnterior){
                 Proyecto2_201700857.test.Aux.Players.Anterior();
+//                Proyecto2_201700857.test.Aux.Players.Aux.Estampas.Anterior();
                 setearTextoJugador();
             }
             if(e.getSource()==EquipoAnterior){

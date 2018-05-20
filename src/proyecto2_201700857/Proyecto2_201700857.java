@@ -15,12 +15,15 @@ public class Proyecto2_201700857 {
     public static VExito Exito;
     public static ListaEquipo test;
     public static ListaJugadores test2;
+    public static ListaEstampas test3;
     public static MostrarContenido Vmostrar;
     public static VEstampas Est;
     public static VCargarEst carga;
+    public static VAdminU controlU;
     public static String Direccion = "C:/Users/Bminas/Desktop/Imagenes/Archivo equipos.csv";
     public static String Direccion2= "C:/Users/Bminas/Desktop/Imagenes/Archivo Jugadores.csv";
     public static int existencia=0;
+    public static VStickers stick;
     
     
     public static void main(String[] args) throws FileNotFoundException, IOException {
@@ -30,9 +33,12 @@ public class Proyecto2_201700857 {
         Ad = new VAdvertencia();
         test = new ListaEquipo();
         test2 = new ListaJugadores();
+        test3 = new ListaEstampas();
         Exito = new VExito();
         Est = new VEstampas();
         carga = new VCargarEst();
+        controlU = new VAdminU();
+//        stick = new VStickers();
         int equipiños=0;
         int jugadol = 0;
 //        CSVReader lector = new CSVReader(new FileReader(Direccion));

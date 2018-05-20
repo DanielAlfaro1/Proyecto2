@@ -144,26 +144,67 @@ public class VCargarEst {
         }
     }
     
+    public void CargarEstampas(String direccion) throws IOException{
+        System.out.println("INICIA CARGA DE ESTAMPAS");
+        BufferedReader br2 = null;
+        try{
+            br2 = new BufferedReader (new FileReader(direccion));
+            String linea = br2.readLine();
+            while (null!=linea){
+                String [] campos = linea.split(",");
+                Proyecto2_201700857.test3.Insertar(campos[0], campos[1], campos[2],campos[3]);
+                System.out.println("El URL de "+campos[0]+" es "+campos[3]);
+                linea = br2.readLine();
+            }
+        }catch(Exception e) {
+                    
+                    } finally {
+            if (null!=br2){
+                br2.close();
+            }
+        }
+    }
+    
     public VCargarEst(){
         CrearPanel();
         CrearVentana();
     }
     
+    int cargas =0;
     MouseListener boton = new MouseListener() {
         @Override
         public void mouseClicked(MouseEvent e) {
+            if(e.getSource()==Cancelar){
+                Ventana.setVisible(false);
+                team.setText("");
+                players.setText("");
+                stickers.setText("");
+                Cargar.setEnabled(true);
+            }
             if(e.getSource()==Cargar){
-                if(Cargar.getForeground()==Color.GREEN){
+                if(Cargar.getForeground()==Color.GREEN&&cargas==0){
+                    cargas++;
+                    Cargar.setEnabled(false);
                     String equipi = "C:/Users/Bminas/Desktop/"+team.getText();
                     String Jugador = "C:/Users/Bminas/Desktop/"+players.getText();
                     String estampitas = "C:/Users/Bminas/Desktop/"+stickers.getText();
                     try {
                         CargarEquipos(equipi);
                         CargarJugadores(Jugador);
+                        CargarEstampas(estampitas);
                     } catch (IOException ex) {}
+                    System.out.println("EMPIEZA EL ORDENAMIENTO DE ESTAMPAS");
+                    Proyecto2_201700857.test.OrdenarEstampas(Proyecto2_201700857.test2,Proyecto2_201700857.test3);
+                    System.out.println("EMPIEZA EL ORDENAMIENTO DE JUGADORES");
                     Proyecto2_201700857.test.Ordenar(Proyecto2_201700857.test, Proyecto2_201700857.test2);
+                    System.out.println("Arreglando unas cosas");
+                    Proyecto2_201700857.test.OrdenarEstampas(Proyecto2_201700857.test2,Proyecto2_201700857.test3);
+//                    Proyecto2_201700857.test.OrdenarEst(Proyecto2_201700857.test, Proyecto2_201700857.test3);
+                    
                     Proyecto2_201700857.existencia++;
                     Proyecto2_201700857.Vmostrar = new MostrarContenido();
+                    Proyecto2_201700857.stick = new VStickers();
+                    
                 }
             }
         }

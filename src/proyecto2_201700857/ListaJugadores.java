@@ -9,7 +9,10 @@ public class ListaJugadores {
         public String Posicion;
         public String ToB;
         public int CodigoTeam;
+        public String zelda;
+        public int Victorias;
         public NodoJugadores siguiente, anterior;
+        public ListaEstampas Estampas;
         
         public NodoJugadores(){     
         }
@@ -20,8 +23,10 @@ public class ListaJugadores {
             Posicion = P;
             ToB = tOb;
             CodigoTeam = Integer.parseInt(Code);
+            Victorias =0;
             siguiente = null;
             anterior = null;
+            Estampas = new ListaEstampas();
         }
     }
         NodoJugadores inicio, fin, Aux, AuxB;
@@ -73,6 +78,12 @@ public class ListaJugadores {
                 return(B);
             }else{
                 return("");
+            }
+        }
+        
+        public void SiguienteMost(){
+            if(Aux!=null){
+                Aux = Aux.siguiente;
             }
         }
         

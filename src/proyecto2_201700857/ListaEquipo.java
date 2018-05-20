@@ -9,6 +9,7 @@ public class ListaEquipo {
         public NodoEquipo siguiente, anterior;
         public ListaJugadores Players;
         
+        
         public NodoEquipo(){
         }
         
@@ -19,6 +20,7 @@ public class ListaEquipo {
             Players = new ListaJugadores();
             siguiente = null;
             anterior = null;
+            
         }
     }
     
@@ -115,16 +117,18 @@ public class ListaEquipo {
           for (int x=0;x<=E.Tamaño-1;x++){
               for (int y =0;y<=J.Tamaño-1;y++){
                   if(E.Aux!=null&&J.Aux!=null){
-//                      System.out.println("Funciona el null");
-//                      System.out.println("Codigo de Equipo "+E.Aux.Codigo);
-//                      System.out.println("Codigo del jugador "+J.Aux.CodigoTeam);
                   if (E.Aux.Codigo==J.Aux.CodigoTeam){
                       String Nombre = J.Aux.NombreJ;
                       String camisola = Integer.toString(J.Aux.Camisola);
                       String Posicion = J.Aux.Posicion;
                       String tOb = J.Aux.ToB;
+                      System.out.println("EL JUGADOR ES TITULAR O BANCA    "+tOb);
                       String Code = Integer.toString(J.Aux.CodigoTeam);
+                      String zelda = J.Aux.Estampas.Aux.zelda;
                       E.Aux.Players.Insertar(Nombre, camisola, Posicion, tOb,Code);
+                      E.Aux.Players.Aux.zelda=zelda;
+                      //una función util
+                      J.Aux.Victorias = E.Aux.Victorias;
                       System.out.println("Codigo "+x+" Guardado.");
                       System.out.println("Jugador "+Nombre+" En el equipo "+E.Aux.Nombre);
                   }
@@ -142,4 +146,46 @@ public class ListaEquipo {
           E.Aux.Players.Actualizar();
         }
     
+        public void OrdenarEstampas(ListaJugadores J, ListaEstampas E){
+            E.Actualizar();
+            J.Actualizar();
+          for (int x=0;x<=J.Tamaño-1;x++){
+              for (int y =0;y<=E.Tamaño-1;y++){
+                  if(J.Aux!=null&&E.Aux!=null){
+                  if (J.Aux.NombreJ.equals(E.Aux.Jugador)){
+                      String Nombre = E.Aux.Jugador;
+                      String Rareza = Integer.toString(E.Aux.Rareza);
+                      String Equipo = E.Aux.Equipo;
+                      String Zelda = E.Aux.zelda;
+                      
+                      String Victorias = Integer.toString(J.Aux.Victorias);
+                      String Camisola = Integer.toString(J.Aux.Camisola);
+                      String tOb = J.Aux.ToB;
+                      String Posicion = J.Aux.Posicion;
+                      E.Aux.Camisola = Camisola;
+                      E.Aux.Posicion = Posicion;
+                      E.Aux.Victorias = Victorias;
+                      E.Aux.ToB = tOb;
+                      J.Aux.Estampas.Insertar(Nombre, Equipo, Rareza, Zelda);
+                      System.out.println("Codigo "+x+" Guardado.");
+                      System.out.println("Jugador "+Nombre+" En el equipo "+Equipo+" Tiene una rareza de "+Rareza);
+                  }
+                  
+                  E.Siguiente();
+                  }
+              }
+              System.out.println("//////////////////////////////");
+              E.Actualizar();
+              J.Siguiente();
+          }
+          System.out.println("TERMINADO");
+          E.Actualizar();
+          J.Actualizar();
+          J.Aux.Estampas.Actualizar();
+        }
+    
+        
+        public void RellenarEstampas(){
+            
+        }
 }

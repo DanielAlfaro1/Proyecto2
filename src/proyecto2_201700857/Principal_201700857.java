@@ -18,41 +18,55 @@ public class Principal_201700857 {
        //TextBox
        Usuario = new JTextField();
        Pass = new JTextField();
-       Usuario.setBounds(70,0,200,30);
-       Pass.setBounds(70,50,200,30);
+       Usuario.setBounds(140,20,200,30);
+       Pass.setBounds(140,70,200,30);
        Usuario.setVisible(true);
        Pass.setVisible(true);
        
        //Label
        ImagenPrincipal = new JLabel();
-       ImagenPrincipal.setBounds(0,100,300,300);
-       ImagenPrincipal.setVisible(true);
+       ImagenPrincipal.setBounds(0,0,600,600);
+       ImageIcon Imagen = new ImageIcon("C:/Users/Bminas/Desktop/Imagenes/Portada.jpg");
+        Icon icono = new ImageIcon(Imagen.getImage().getScaledInstance(ImagenPrincipal.getWidth(),ImagenPrincipal.getHeight(),Image.SCALE_DEFAULT));
+        ImagenPrincipal.setIcon(icono);        
        
+       ImagenPrincipal.setVisible(true);
+       nombre = new JLabel("USUARIO");
+       nombre.setBounds(60,20,200,30);
+       nombre.setForeground(Color.WHITE);
+       contra = new JLabel("CONTRASEÑA");
+       contra.setForeground(Color.WHITE);
+       contra.setBounds(40,70,200,30);
        
        //Botones
        Ingresar = new JButton("INGRESAR");
-       Ingresar.setBounds(100,100,105,30);
+       Ingresar.setBounds(70,150,105,30);
        Ingresar.addMouseListener(Boton);
-       Crear = new JButton("CREAR");
-       Crear.setBounds(100,200,105,30);
+       Crear = new JButton("INFORMACION");
+       Crear.setBounds(440,480,140,30);
        Crear.addMouseListener(Boton);
-       Salir = new JButton("CANCELAR");
-       Salir.setBounds(100,300,105,30);
+       Salir = new JButton("SALIR");
+       Salir.setBounds(210,150,105,30);
        Salir.addMouseListener(Boton);
        //Agregar
        P1 = new JPanel();
        P1.setLayout(null);
-       P1.add(Usuario);
-       P1.add(Pass);
-       P1.add(Ingresar);
-       P1.add(Crear);
-       P1.setVisible(true);
-       P1.add(Salir);
+       P1.add(ImagenPrincipal);
+       ImagenPrincipal.add(Usuario);
+       ImagenPrincipal.add(Pass);
+       ImagenPrincipal.add(Ingresar);
+       ImagenPrincipal.add(Crear);
+       ImagenPrincipal.add(nombre);
+       ImagenPrincipal.add(contra);
+       ImagenPrincipal.setVisible(true);
+       ImagenPrincipal.add(Salir);
    }
    
    public void CrearVentana(){
        Ventana = new JFrame("INICIO");
-       Ventana.setBounds(500,50,600,600);
+       Ventana.setBounds(400,50,600,600);
+       Ventana.setUndecorated(true);
+       Ventana.setResizable(false);
        Ventana.add(P1);
        Ventana.setVisible(true);
        Ventana.setDefaultCloseOperation(Ventana.EXIT_ON_CLOSE);
@@ -68,36 +82,31 @@ public class Principal_201700857 {
         public void mouseClicked(MouseEvent e) {
             if (e.getSource()==Ingresar){
                 if(Usuario.getText().equals("Admin")&&Pass.getText().contains("201700857")){
+                    Usuario.setText("");
+                    Pass.setText("");
                     VAdmin windo = new VAdmin();
                     Ventana.setVisible(false);
                 }else{
-                    
+                    if(Proyecto2_201700857.Usuarios.Aux!=null){
+                        Proyecto2_201700857.Usuarios.Buscar(Usuario.getText());
+                        if(Proyecto2_201700857.Usuarios.BuscarU().equals(Usuario.getText())&&Proyecto2_201700857.Usuarios.BuscarP().equals(Pass.getText())){
+                            System.out.println("SE ENCONTRÓ COINCIDENCIA");  
+                        }else{
+                            Proyecto2_201700857.Ad.Mensaje("<html><body>EL USUARIO O CONTRASEÑA NO CONCUERDAN.");
+                            Proyecto2_201700857.Ad.Ventanita.setVisible(true);
+                            Proyecto2_201700857.Usuarios.ActualizarB();
+                        }
+                     }else{
+                        Proyecto2_201700857.Ad.Mensaje("<html><body>EL USUARIO O CONTRASEÑA NO CONCUERDAN.");
+                        Proyecto2_201700857.Ad.Ventanita.setVisible(true);
+                    }
                 }
             }
             if(e.getSource()==Crear){
-                if(Proyecto2_201700857.test.Aux!=null){
-                String Name =Proyecto2_201700857.test.ImprimirNombre();
-                int Code = Proyecto2_201700857.test.ImprimirCodigo();
-                int Vic = Proyecto2_201700857.test.ImprimirVictorias();
-                System.out.println("Nombre del equipo: "+Name+" Codigo del equipo: "+Code+" Numero de victorias: "+Vic);
-                Proyecto2_201700857.test.Siguiente();
-                }else{
-                    Proyecto2_201700857.test.Actualizar();
-                }
-                if(Proyecto2_201700857.test2.Aux!=null){
-                    String Nombre = Proyecto2_201700857.test2.ImprimirNombre();
-                    int camisola = Proyecto2_201700857.test2.ImprimirCamisola();
-                    String Posicion = Proyecto2_201700857.test2.ImprimirPosicion();
-                    String tOb=Proyecto2_201700857.test2.ImprimirToP();
-                    int Code = Proyecto2_201700857.test2.ImprimirCodigo();
-                    System.out.println("Nombre del jugador: "+Nombre+" Numero de Camisola: "+camisola+" Posicion de campo: "+Posicion+" El jugador es: "+tOb+" El pertenece al equipo de codigo: "+Code);
-                    Proyecto2_201700857.test2.Siguiente();
-                }else{
-                    Proyecto2_201700857.test2.Actualizar();
-                }
+                
             }
             if(e.getSource()==Salir){
-//                Proyecto2_201700857.test.Ordenar(Proyecto2_201700857.test, Proyecto2_201700857.test2);
+                System.exit(0);
             }
         }
 

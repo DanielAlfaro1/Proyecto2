@@ -8,6 +8,7 @@ public class VAdmin {
     JFrame Ventana;
     JPanel p1;
     JButton Estampas, Usuarios, Reporte,Salir;
+    JLabel Fondo;
     
     public void CrearPanel(){
         
@@ -22,23 +23,32 @@ public class VAdmin {
         Reporte.setBounds(20,120,100,30);
         Reporte.addMouseListener(accion);
         Salir = new JButton("REGRESAR");
-        Salir.setBounds(70,150,100,30);
+        Salir.setBounds(150,190,100,30);
         Salir.addMouseListener(accion);
+        //Label
+        Fondo = new JLabel();
+        Fondo.setBounds(0,0,270,270);
+       ImageIcon Imagen = new ImageIcon("C:/Users/Bminas/Desktop/Imagenes/Portada.jpg");
+        Icon icono = new ImageIcon(Imagen.getImage().getScaledInstance(Fondo.getWidth(),Fondo.getHeight(),Image.SCALE_DEFAULT));
+        Fondo.setIcon(icono);        
+        
         //Panel y agregar
         p1 = new JPanel();
         p1.setLayout(null);
-        p1.add(Estampas);
-        p1.add(Usuarios);
-        p1.add(Reporte);
-        p1.add(Salir);
+        p1.add(Fondo);
+        Fondo.add(Estampas);
+        Fondo.add(Usuarios);
+        Fondo.add(Reporte);
+        Fondo.add(Salir);
     }
     
     public void CrearVentana(){
-        Ventana = new JFrame();
-        Ventana.setBounds(200,70,400,400);
+        Ventana = new JFrame("VENTANA DE ADMINISTRADOR");
+        Ventana.setBounds(500,200,270,270);
+        Ventana.setUndecorated(true);
         Ventana.add(p1);
         Ventana.setVisible(true);
-//        Ventana.setDefaultCloseOperation(Ventana.HIDE_ON_CLOSE);
+        Ventana.setDefaultCloseOperation(0);
         
     }
     
@@ -51,14 +61,22 @@ public class VAdmin {
         @Override
         public void mouseClicked(MouseEvent e) {
             if(e.getSource()==Usuarios){
-                VAdminU Ventanita = new VAdminU();
+                Proyecto2_201700857.controlU.Ventana.setVisible(true);
             }
             if (e.getSource()==Salir){
                 Ventana.setVisible(false);
+                Proyecto2_201700857.Est.Ventana.setVisible(false);
+                Proyecto2_201700857.Ventana2.Ventana.setVisible(false);
                 Proyecto2_201700857.Ventana1.Ventana.setVisible(true);
+                Proyecto2_201700857.controlU.Ventana.setVisible(false);
+                if(Proyecto2_201700857.existencia!=0){
+                Proyecto2_201700857.Vmostrar.Ventana.setVisible(false);
+                }
+                
+                Proyecto2_201700857.carga.Ventana.setVisible(false);
             }
             if (e.getSource()==Estampas){
-                
+              Proyecto2_201700857.Est.Ventana.setVisible(true);  
             }
         }
 

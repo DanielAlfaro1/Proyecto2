@@ -7,7 +7,7 @@ import javax.swing.*;
 public class VEstampas {
     public JFrame Ventana;
     public JPanel P1;
-    public JButton Cargar, Mostrar,Volver;
+    public JButton Cargar, Mostrar,Volver,Estampas;
     public JLabel Titulo;
     
     public void CrearPanel(){
@@ -18,32 +18,37 @@ public class VEstampas {
         //Botones
         Cargar = new JButton("CARGAR");
         Cargar.setFont(font);
-        Cargar.setBounds(50,70,125,30);
+        Cargar.setBounds(0,70,125,30);
         Cargar.addMouseListener(boton);
-        Mostrar = new JButton("MOSTRAR");
+        Mostrar = new JButton("JUGADORES");
         Mostrar.setFont(font);
-        Mostrar.setBounds(200,70,125,30);
+        Mostrar.setBounds(135,70,150,30);
         Mostrar.addMouseListener(boton);
         Volver = new JButton("VOLVER");
         Volver.setFont(font);
-        Volver.setBounds(125,120,125,30);
+        Volver.setBounds(155,120,125,30);
         Volver.addMouseListener(boton);
+        Estampas = new JButton("ESTAMPAS");
+        Estampas.setFont(font);
+        Estampas.setBounds(290,70,125,30);
+        Estampas.addMouseListener(boton);
         //Label
         Titulo = new JLabel("CONTROL DE ESTAMPAS");
         Titulo.setFont(font);
-        Titulo.setBounds(95,20,200,30);
+        Titulo.setBounds(130,20,230,30);
         //Panel agregados
         P1.add(Cargar);
         P1.add(Mostrar);
         P1.add(Titulo);
         P1.add(Volver);
+        P1.add(Estampas);
     }
     
     public void CrearVentana(){
         Ventana = new JFrame("CONTROL DE ESTAMPAS");
         Ventana.add(P1);
-        Ventana.setBounds(400,250,380,200);
-        Ventana.setVisible(true);
+        Ventana.setBounds(400,250,433,200);
+        Ventana.setVisible(false);
     }
     
     public VEstampas (){
@@ -63,7 +68,14 @@ public class VEstampas {
                 }
             }
             if (e.getSource()==Cargar){
+
                 Proyecto2_201700857.carga.Ventana.setVisible(true);
+
+            }
+            if (e.getSource()==Estampas){
+                if(Proyecto2_201700857.existencia!=0){
+                Proyecto2_201700857.stick.Ventana.setVisible(true);
+                }
             }
         }
 

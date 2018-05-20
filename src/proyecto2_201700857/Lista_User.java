@@ -127,8 +127,18 @@ public class Lista_User {
     
     public void Buscar (String usuario){
       while (AuxB!=null||!usuario.equals(AuxB.Usuario)){
+          if(usuario.equals(AuxB.Usuario)){
+              System.out.println("avisar");
+              break;
+          }else{
+                 System.out.println("NO SE ENCONTRÓ NADA AUN");
+                 if(AuxB.siguiente!=null){
                 AuxB = AuxB.siguiente;
-      }  
+                 }else{
+                     break;
+                 }
+          }
+      }     System.out.println("TALVEZ SE ENCONTRÓ COINCIDENCIA");
     }
     
     public String BuscarU(){
